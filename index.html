@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>地動兩則</title>
+  <meta name="description" content="陳達毅的兩件瀏覽器試作：臺灣在呼吸、預警的十秒。個人探索，非官方警報。">
+  <meta name="theme-color" content="#0e100e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="page-home">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">數位藝術 × 地震科學 · 2026</p>
+    <h1>地動兩則</h1>
+    <p class="lede">兩件給瀏覽器的試作。一件把背景地動聽成呼吸，一件把強震即時警報的那幾秒攤開。</p>
+    <nav class="works" aria-label="作品">
+      <a class="work" href="breathing/">
+        <span class="idx">01</span>
+        <span class="work-title">臺灣在呼吸</span>
+        <span class="work-sum">即時地動聲景。背景微地動是連續的呼吸；事件脈衝改寫聲音與畫面。</span>
+      </a>
+      <a class="work" href="ten-seconds/">
+        <span class="idx">02</span>
+        <span class="work-title">預警的十秒</span>
+        <span class="work-sum">選一座城市，重播 2024-04-03 花蓮地震。看 P 波、警報與 S 波誰先到。</span>
+      </a>
+    </nav>
+    <footer class="colophon">
+      <p>陳達毅 · 個人探索作品</p>
+      <p>不是交通部中央氣象署的官方產品、教材或警報。不可用於避難決策。</p>
+    </footer>
+  </div>
+  <script type="module" src="assets/js/landing.js"></script>
+</body>
+</html>

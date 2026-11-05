@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>臺灣在呼吸</title>
+  <meta name="description" content="背景微地動的聲音化試作。示範資料，非真實警報。">
+  <meta name="theme-color" content="#0e100e">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="page-breath">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <header class="mast">
+    <div>
+      <a class="home" href="../">地動兩則</a>
+      <h1>臺灣在呼吸</h1>
+      <p class="kicker">即時地動聲景</p>
+      <p class="caption">背景微地動被聽成持續的呼吸。事件脈衝一來，音色、線條與顏色一起轉調。現在播放的是合成示範，不是測站即時串流，也不是地震警報。</p>
+    </div>
+    <div class="readout" id="readout" aria-hidden="true"></div>
+  </header>
+  <footer class="toolbar">
+    <div class="toolbar-row">
+      <button type="button" id="audioBtn" class="primary" aria-pressed="false">開始聲音</button>
+      <label class="slider">音量
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7" aria-valuemin="0" aria-valuemax="1">
+      </label>
+      <label class="field">聽感
+        <select id="preset" aria-label="聽感預設"></select>
+      </label>
+      <label class="slider">事件強度
+        <input id="intensity" type="range" min="0.4" max="1.6" step="0.01" value="1">
+      </label>
+      <button type="button" id="pulseBtn">送入事件脈衝</button>
+    </div>
+    <div class="toolbar-row mode-row">
+      <label><input type="radio" name="mode" value="demo" checked> 模擬／示範資料</label>
+      <label><input type="radio" name="mode" value="ws"> 即時橋接</label>
+      <label class="field" id="wsLabel" hidden>WebSocket
+        <input id="wsUrl" type="url" inputmode="url" placeholder="wss://bridge.example/stream" size="28" spellcheck="false">
+      </label>
+      <span id="status" class="status" role="status">讀取示範波形…</span>
+    </div>
+    <p class="fine">空白鍵切換聲音，E 送入事件。建議用耳機，先把音量調小。聽感是預設，不是該地的實測。資料藝術／聲音化科普，非真實警報。</p>
+  </footer>
+  <script type="module" src="main.js"></script>
+  <noscript><p>此頁需要 JavaScript。</p></noscript>
+</body>
+</html>
