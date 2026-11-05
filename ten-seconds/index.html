@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>預警的十秒</title>
+  <meta name="description" content="2024-04-03 花蓮地震的教學重播。看一座城市還有幾秒。非官方警報。">
+  <meta name="theme-color" content="#0e100e">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="page-ten">
+  <div class="sheet">
+    <header>
+      <div class="top-nav">
+        <a href="../">地動兩則</a>
+        <span>教學演示 · 非官方警報</span>
+      </div>
+      <h1>預警的十秒</h1>
+      <p class="lede">選一座城市，把 2024 年 4 月 3 日花蓮地震從發震再走一遍。P 波先到、通常較小；S 波較慢、搖晃較大。警報若趕在 S 波之前，中間就是可應變的時間。十秒是數量級，每個地方不一樣長。</p>
+      <p class="model-line">教學模型　Vp 6.2 km/s　Vs 3.5 km/s　深度 15.5 km　不是氣象署作業走時</p>
+    </header>
+
+    <div class="stories" id="stories" role="group" aria-label="三個課堂情境"></div>
+
+    <div class="split">
+      <section class="map-panel">
+        <div class="map-frame">
+          <canvas id="map" aria-label="臺灣示意圖，可點選城市"></canvas>
+        </div>
+        <ul class="legend">
+          <li><i class="swatch"></i>P 波波前</li>
+          <li><i class="swatch s"></i>S 波範圍</li>
+          <li><i class="swatch epi"></i>震央</li>
+          <li><i class="swatch yes"></i>有國家級警報</li>
+          <li><i class="swatch no"></i>未發</li>
+        </ul>
+      </section>
+
+      <section class="side" aria-label="時間">
+        <p class="brief" id="brief"></p>
+        <div class="count" id="count" data-tone="wait">
+          <p class="count-label" id="countLabel">P 波抵達前</p>
+          <div class="count-num" id="countNum" aria-hidden="true">0.0<small>秒</small></div>
+          <p class="count-sub" id="countSub"></p>
+        </div>
+        <p class="sr-only" id="live" aria-live="polite"></p>
+        <p class="clock" id="clock"></p>
+        <ol class="tl" id="timeline"></ol>
+        <div class="meter" title="只表示遠近造成的相對強弱，不是氣象署震度">
+          <span>示意搖晃 · 非震度</span>
+          <i><b id="shakeBar"></b></i>
+        </div>
+        <div class="transport">
+          <button type="button" id="playBtn" class="primary" aria-pressed="false">播放</button>
+          <button type="button" id="resetBtn">重播</button>
+          <button type="button" id="soundBtn" aria-pressed="true">音效開</button>
+          <div class="speeds" role="group" aria-label="播放速度">
+            <button type="button" data-speed="1" aria-pressed="true">1×</button>
+            <button type="button" data-speed="2" aria-pressed="false">2×</button>
+            <button type="button" data-speed="4" aria-pressed="false">4×</button>
+          </div>
+          <label class="slider">音量
+            <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8">
+          </label>
+        </div>
+        <input class="scrub" id="scrub" type="range" min="0" max="75" step="0.1" value="0" aria-label="時間軸">
+        <p class="fine" id="soundNote">音效是這頁自己做的提示音，不是災防告警系統的聲音。切換城市不會把時間倒回；三個情境鈕會從頭播放。方向鍵可換城市。</p>
+        <div class="cities" id="cities"></div>
+        <details class="notes">
+          <summary>時間與資料怎麼來的</summary>
+          <p>事件是 2024-04-03 07:58:09.9（臺灣時間），規模 ML 7.2，深度 15.5 公里，震央北緯 23.77 度、東經 121.67 度，約在花蓮縣政府南南東方 25 公里的外海。定位與規模沿用該次地震公開報告的常用數值。</p>
+          <p>國家級警報的縣市與時刻來自交通部中央氣象署 113 年 4 月 3 日新聞稿（中象 113 字第 11 號）：07:58:18 發到花蓮、宜蘭、南投、彰化；07:58:24 發到臺中、苗栗、新竹縣、雲林、嘉義縣、嘉義市、臺南、臺東。臺北、新北、基隆、桃園、新竹市、高雄、屏東沒有國家級警報。新聞稿寫初報規模為 6.2 與 6.8，預估震度未達 4 級。電視台插播與部分網路通報仍有發出；這頁的聲音只標記手機國家級警報。</p>
+          <p>到時用均質地殼：距離是城市近似座標到震央的大圓距離，再與深度合成震源距，除以 Vp 6.2 km/s 或 Vs 3.5 km/s。這不是三維速度模型，也不是測站的實際到時，和真實紀錄可以差數秒。城市是行政中心的約略位置，不是地震站。應變時間少於 5 秒，這頁稱為預警盲區。</p>
+          <p>地圖上的波前是地表第一達的示意圓，半徑為 √((v×t)² − 深度²)。搖晃長條只表示遠近，不換算氣象署震度。</p>
+        </details>
+      </section>
+    </div>
+    <footer class="colophon">
+      <p>陳達毅 · 個人探索作品</p>
+      <p>不是交通部中央氣象署的官方產品、教材或警報。時間只夠上課講原理，不能拿來避難。</p>
+    </footer>
+  </div>
+  <script type="module" src="main.js"></script>
+  <noscript><p>此頁需要 JavaScript。</p></noscript>
+</body>
+</html>
